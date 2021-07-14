@@ -27,7 +27,7 @@ function App() {
             setCategories={setCategories}
           ></Categories>
         </Route>
-        <Route exact path='/reviews/:category/'>
+        <Route exact path='/reviews/:category'>
           <CategoryReviews
             reviews={reviews}
             setReviews={setReviews}
@@ -36,7 +36,7 @@ function App() {
         <Route exact path='/reviews'>
           <Reviews reviews={reviews} setReviews={setReviews}></Reviews>
         </Route>
-        <Route exact path='/reviews/:review_id'>
+        <Route exact path='/review/:review_id'>
           <ReviewById></ReviewById>
         </Route>
         <Route>

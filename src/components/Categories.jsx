@@ -11,13 +11,17 @@ const Categories = ({ categories, setCategories }) => {
 
   return (
     <div className='Categories'>
-      {categories.map((category) => {
-        return (
-          <Link to={`/reviews/${category.slug}/`} key={category.slug}>
-            {category.slug}
-          </Link>
-        );
-      })}
+      <ul>
+        {categories.map((category) => {
+          return (
+            <li key='{category.slug}'>
+              <Link to={`/reviews/${category.slug}`} key={category.slug}>
+                {category.slug}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };

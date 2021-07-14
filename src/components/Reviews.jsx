@@ -11,13 +11,17 @@ const Reviews = ({ reviews, setReviews }) => {
 
   return (
     <div className='Reviews'>
-      {reviews.map((review) => {
-        return (
-          <Link to={`/reviews/${review.review_id}`} key={review.review_id}>
-            {review.title}
-          </Link>
-        );
-      })}
+      <ul>
+        {reviews.map((review) => {
+          return (
+            <li key={review.review_id}>
+              <Link to={`/review/${review.review_id}`} key={review.review_id}>
+                {review.title}
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 };
