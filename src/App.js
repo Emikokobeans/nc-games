@@ -8,6 +8,8 @@ import Categories from './components/Categories';
 import Reviews from './components/Reviews';
 import ReviewById from './components/ReviewById';
 import CategoryReviews from './components/CategoryReviews';
+import Authors from './components/Authors';
+import Comments from './components/Comments';
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -27,6 +29,9 @@ function App() {
             setCategories={setCategories}
           ></Categories>
         </Route>
+        <Route exact path='/authors'>
+          <Authors reviews={reviews} />
+        </Route>
         <Route exact path='/reviews/:category'>
           <CategoryReviews
             reviews={reviews}
@@ -38,6 +43,9 @@ function App() {
         </Route>
         <Route exact path='/review/:review_id'>
           <ReviewById></ReviewById>
+        </Route>
+        <Route exact path='/reviews/:review_id/comments'>
+          <Comments />
         </Route>
         <Route>
           <p>404 - Page not found</p>

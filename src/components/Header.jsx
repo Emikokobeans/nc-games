@@ -1,11 +1,20 @@
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUsers } from '@fortawesome/free-solid-svg-icons';
 
 const Header = () => {
   return (
     <header className='Header'>
-      <Link to='/'>
-        <h1>Game Reviews</h1>
-      </Link>
+      <h1>
+        <Link to='/'>
+          <span>Game Reviews</span>
+        </Link>
+        <Link to='/authors'>
+          <span className='author__corner'>
+            <FontAwesomeIcon icon={faUsers} />
+          </span>
+        </Link>
+      </h1>
     </header>
   );
 };

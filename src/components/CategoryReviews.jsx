@@ -21,3 +21,5 @@ const CategoryReviews = ({ reviews, setReviews }) => {
 };
 
 export default CategoryReviews;
+
+//Getting an unhandle rejection(typeerror): setreviews is not a function error - confused.

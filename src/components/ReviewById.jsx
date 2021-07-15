@@ -1,29 +1,18 @@
 import { useState, useEffect } from 'react';
-import {
-  getReviewById,
-  getReviewComments,
-  patchReviewMinus,
-  patchReviewPlus
-} from '../utils/api';
+import { getReviewById, patchReviewMinus, patchReviewPlus } from '../utils/api';
 import { useParams } from 'react-router';
 import Comments from './Comments';
+import { Link } from 'react-router-dom';
 
 const ReviewById = () => {
   const { review_id } = useParams();
   const [review, setReview] = useState({});
-  const [comments, setComments] = useState([]);
   const [newVote, setNewVote] = useState(0);
   const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     getReviewById(review_id).then((response) => {
       setReview(response);
-    });
-  }, []);
-
-  useEffect(() => {
-    getReviewComments(review_id).then((response) => {
-      setComments(response);
     });
   }, []);
 
@@ -64,7 +53,7 @@ const ReviewById = () => {
 
   return (
     <div>
-      <h1>{review.title}</h1>
+      <h2>{review.title}</h2>
       <p>{review.designer}</p>
       <p>{review.owner}</p>
       <img
@@ -81,8 +70,9 @@ const ReviewById = () => {
       <button disabled={newVote > 0} onClick={decVotes}>
         -1
       </button>
-
-      <Comments comments={comments}></Comments>
+      <Link to={`/reviews/${review_id}/comments`}>
+        <Comments review_id={review_id}></Comments>
+      </Link>
     </div>
   );
 };
