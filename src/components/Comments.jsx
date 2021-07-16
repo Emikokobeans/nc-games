@@ -1,15 +1,31 @@
 import { useState, useEffect } from 'react';
-import { getReviewComments } from '../utils/api';
+import { getReviewComments, postReview } from '../utils/api';
+import { useParams } from 'react-router';
 
-const Comments = (review_id) => {
+const Comments = ({ setReviews }) => {
   const [comments, setComments] = useState([]);
+  const { review_id } = useParams();
+  const [newCommentBody, setNewCommentBody] = useState('');
 
   useEffect(() => {
     getReviewComments(review_id).then((response) => {
       setComments(response);
     });
   }, []);
-  console.log(comments);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const newReview = {
+      author: 'bainesface',
+      body: newCommentBody
+    };
+    postReview(review_id, newReview).then((newReview) => {
+      setReviews((currReviews) => {
+        const newReviews = [newReview, ...currReviews];
+        return newReviews;
+      });
+    });
+  };
 
   return (
     <section className=''>
@@ -25,6 +41,20 @@ const Comments = (review_id) => {
           );
         })}
       </ul>
+      <form
+        onSubmit={(event) => {
+          handleSubmit(event);
+        }}
+      >
+        <label htmlFor='comment'>
+          Comment:
+          <textarea
+            value={newCommentBody}
+            onChange={(event) => setNewCommentBody(event.target.value)}
+          ></textarea>
+        </label>
+        <button>Submit</button>
+      </form>
     </section>
   );
 };
@@ -32,3 +62,4 @@ const Comments = (review_id) => {
 export default Comments;
 
 //Failed to load resource - 400 bad request error
+//review_id is undefined - why?

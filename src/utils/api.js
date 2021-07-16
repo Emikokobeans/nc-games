@@ -9,7 +9,7 @@ export const getCategories = async () => {
   return data.categories;
 };
 
-export const getReviews = async () => {
+export const getReviews = async (query) => {
   const { data } = await gamesApi.get('/reviews');
   return data.reviews;
 };
@@ -40,5 +40,13 @@ export const patchReviewMinus = async (reviewId) => {
   const { data } = await gamesApi.patch(`/reviews/${reviewId}`, {
     inc_votes: -1
   });
+  return data.review;
+};
+
+export const postReview = async (reviewId, newReview) => {
+  const { data } = await gamesApi.post(
+    `/reviews/${reviewId}/comments`,
+    newReview
+  );
   return data.review;
 };

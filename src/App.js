@@ -45,7 +45,7 @@ function App() {
           <ReviewById></ReviewById>
         </Route>
         <Route exact path='/reviews/:review_id/comments'>
-          <Comments />
+          <Comments setReviews={setReviews} />
         </Route>
         <Route>
           <p>404 - Page not found</p>

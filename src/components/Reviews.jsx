@@ -1,16 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getReviews } from '../utils/api';
+import OrderSelector from './OrderSelector';
 
 const Reviews = ({ reviews, setReviews }) => {
+  const [query, setQuery] = useState('');
+
   useEffect(() => {
-    getReviews().then((reviewsFromApi) => {
+    getReviews(query).then((reviewsFromApi) => {
       setReviews(reviewsFromApi);
     });
-  }, []);
+  }, [query]);
 
   return (
     <div className='Reviews'>
+      <OrderSelector setQuery={setQuery}></OrderSelector>
       <ul>
         {reviews.map((review) => {
           return (
