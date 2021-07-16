@@ -1,23 +1,22 @@
 import { useState } from 'react';
 
 const OrderSelector = ({ setQuery }) => {
-  const [selected, setSelected] = useState('');
-
-  const handleChange = (event) => {
-    setQuery(event.target.value);
-    setSelected(event.target.value);
-  };
+  const [inputBox, setInputBox] = useState('');
 
   return (
     <section className='order_selectors'>
-      <form>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+          setQuery(inputBox);
+        }}
+      >
         <select
           name='sort_by'
           id='sort_by'
           onChange={(event) => {
-            handleChange(event);
+            setInputBox(event.target.value);
           }}
-          value={selected}
         >
           <option value='' disabled selected>
             Sort By
@@ -30,6 +29,8 @@ const OrderSelector = ({ setQuery }) => {
           <option value='category'>Category</option>
           <option value='comment_count'>Comments</option>
         </select>
+        <br></br>
+        <button type='submit'>Submit</button>
       </form>
     </section>
   );
