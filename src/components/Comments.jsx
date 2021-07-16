@@ -16,7 +16,7 @@ const Comments = ({ setReviews }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const newReview = {
-      author: 'bainesface',
+      username: 'weegembump',
       body: newCommentBody
     };
     postReview(review_id, newReview).then((newReview) => {
@@ -61,5 +61,4 @@ const Comments = ({ setReviews }) => {
 
 export default Comments;
 
-//Failed to load resource - 400 bad request error
-//review_id is undefined - why?
+//add confirmation that comment was posted and refresh when posted

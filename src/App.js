@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
 import Nav from './components/Nav';
@@ -8,50 +8,53 @@ import Categories from './components/Categories';
 import Reviews from './components/Reviews';
 import ReviewById from './components/ReviewById';
 import CategoryReviews from './components/CategoryReviews';
-import Authors from './components/Authors';
+import Users from './components/Users';
 import Comments from './components/Comments';
+import { UserContext } from './contexts/User';
 
 function App() {
-  const [categories, setCategories] = useState([]);
   const [reviews, setReviews] = useState([]);
 
+  const [user, setUser] = useState({ username: 'weegembump' });
+
   return (
-    <div className='App'>
-      <Header />
-      <Nav />
-      <Switch>
-        <Route exact path='/'>
-          <Homepage />
-        </Route>
-        <Route exact path='/categories'>
-          <Categories
-            categories={categories}
-            setCategories={setCategories}
-          ></Categories>
-        </Route>
-        <Route exact path='/authors'>
-          <Authors reviews={reviews} />
-        </Route>
-        <Route exact path='/reviews/:category'>
-          <CategoryReviews
-            reviews={reviews}
-            setReviews={setReviews}
-          ></CategoryReviews>
-        </Route>
-        <Route exact path='/reviews'>
-          <Reviews reviews={reviews} setReviews={setReviews}></Reviews>
-        </Route>
-        <Route exact path='/review/:review_id'>
-          <ReviewById></ReviewById>
-        </Route>
-        <Route exact path='/reviews/:review_id/comments'>
-          <Comments setReviews={setReviews} />
-        </Route>
-        <Route>
-          <p>404 - Page not found</p>
-        </Route>
-      </Switch>
-    </div>
+    <BrowserRouter>
+      <UserContext.Provider value={{ user, setUser }}>
+        <div className='App'>
+          <Header />
+          <Nav />
+          <Switch>
+            <Route exact path='/'>
+              <Homepage />
+            </Route>
+            <Route exact path='/categories'>
+              <Categories />
+            </Route>
+            <Route exact path='/users'>
+              <Users />
+            </Route>
+            <Route exact path='/reviews/:category'>
+              <CategoryReviews
+                reviews={reviews}
+                setReviews={setReviews}
+              ></CategoryReviews>
+            </Route>
+            <Route exact path='/reviews'>
+              <Reviews reviews={reviews} setReviews={setReviews}></Reviews>
+            </Route>
+            <Route exact path='/review/:review_id'>
+              <ReviewById></ReviewById>
+            </Route>
+            <Route exact path='/reviews/:review_id/comments'>
+              <Comments setReviews={setReviews} />
+            </Route>
+            <Route>
+              <p>404 - Page not found</p>
+            </Route>
+          </Switch>
+        </div>
+      </UserContext.Provider>
+    </BrowserRouter>
   );
 }
 

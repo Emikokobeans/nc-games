@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getCategories } from '../utils/api';
 
-const Categories = ({ categories, setCategories }) => {
+const Categories = () => {
+  const [categories, setCategories] = useState([]);
+
   useEffect(() => {
     getCategories().then((categoriesFromApi) => {
       setCategories(categoriesFromApi);

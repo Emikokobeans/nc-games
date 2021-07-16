@@ -70,9 +70,7 @@ const ReviewById = () => {
       <button disabled={newVote > 0} onClick={decVotes}>
         -1
       </button>
-      <Link to={`/reviews/${review_id}/comments`}>
-        <Comments review_id={review_id}></Comments>
-      </Link>
+      <Comments review_id={review_id}></Comments>
     </div>
   );
 };
