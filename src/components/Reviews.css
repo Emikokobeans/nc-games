@@ -1,0 +1,12 @@
+.Reviews {
+  text-align: center;
+  width: 50%;
+  margin: auto;
+}
+
+.reviewbtn {
+  border-radius: 10px;
+  padding: 10px 10px;
+  width: 50%;
+  margin-top: 10px;
+}

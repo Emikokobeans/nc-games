@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getReviews } from '../utils/api';
 import OrderSelector from './OrderSelector';
+import { Button } from 'react-bootstrap';
+import './Reviews.css';
 
 const Reviews = ({ reviews, setReviews, category }) => {
   const [query, setQuery] = useState({});
@@ -20,7 +22,9 @@ const Reviews = ({ reviews, setReviews, category }) => {
           return (
             <li key={review.review_id}>
               <Link to={`/review/${review.review_id}`} key={review.review_id}>
-                {review.title}
+                <Button variant='light' className='reviewbtn'>
+                  {review.title}
+                </Button>
               </Link>
             </li>
           );
