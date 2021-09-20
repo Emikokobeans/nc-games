@@ -10,6 +10,9 @@ const Nav = () => {
 
   return (
     <nav className='Nav'>
+      <Link to='/' key='homepage' className='link'>
+        Home
+      </Link>
       <Link to='/categories' key='categories' className='link'>
         Categories
       </Link>
