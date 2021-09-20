@@ -1,0 +1,23 @@
+ul {
+  list-style-type: none;
+}
+
+.Categories {
+  text-align: center;
+}
+
+.button {
+  padding: 20px 10px;
+  width: 50%;
+  margin: 20px;
+  text-transform: capitalize;
+  color: white;
+  background: #333;
+  font-size: 20px;
+  border-radius: 20px;
+}
+
+.button:hover {
+  color: black;
+  background: rgb(196, 192, 192);
+}
