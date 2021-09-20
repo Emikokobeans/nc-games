@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+.Header {
+  padding: 10px;
+  text-align: center;
+  background: #333;
+  text-decoration: none;
+}
+
+.title {
+  font-size: 50px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-family: 'Permanent Marker', cursive;
+  color: white;
+}
+
+@media (max-width: 900px) {
+  .header {
+    justify-content: space-evenly;
+    height: 10vh;
+  }
+  .title {
+    font-size: 11vw;
+  }
+}
